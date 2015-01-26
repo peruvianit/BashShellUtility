@@ -1,3 +1,4 @@
+# Author : Sergio Arellano Diaz
 BashShellUtility
 ================
 
