@@ -3,28 +3,28 @@
 BashBackupApplication
 ============================================
 
-Simplice gestione dei Backup per il filesystem
+ Simplice gestione dei Backup per il filesystem
 
-#-----------------------------------------------------------
-# ROOT        : Directory del File System per i salvataggio
-#               di tutti file creati.
-# FOLDERS     : Array con tutte progetti("cartelle")
-#               al interno del ROOT per la creazioni
-#               dei files tar.gz
-# PATH_BACKUP : Path dove saranno scritti tutti files
-#               generati dal comando tar.gz
-#
-#  Esempio Struttura delle Cartelle, con la creazione dei
-#  file tar.gz dopo la escuzione del Bash
-#
-# ROOT ├── data
-#  │   ├── source_20150929_1200.tar.gz
-#  │   ├── source_20150930_1740.tar.gz
-#  │   ├── source_20151002_1340.tar.gz
-#  │   └── VerifyValidator_20151007_1720.tar.gz
-#  └── log
-#      └── log_backup_apps.log
-#------------------------------------------------------------
+ ROOT        : Directory del File System per i salvataggio
+               di tutti file creati.
+ FOLDERS     : Array con tutte progetti("cartelle")
+               al interno del ROOT per la creazioni
+               dei files tar.gz
+ PATH_BACKUP : Path dove saranno scritti tutti files
+               generati dal comando tar.gz
+
+ Esempio Struttura delle Cartelle, con la creazione dei
+ file tar.gz dopo la escuzione del Bash
+
+ ROOT ├── data
+  │   ├── source_20150929_1200.tar.gz
+  │   ├── source_20150930_1740.tar.gz
+  │   ├── source_20151002_1340.tar.gz
+  │   └── VerifyValidator_20151007_1720.tar.gz
+  └── log
+      └── log_backup_apps.log
+
+------------------------------------------------------------
 
 Gestione con il utilizo di crontab :
 crontab -e 
