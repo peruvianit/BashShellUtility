@@ -22,8 +22,8 @@ Esegure direttamente o tramite Crontab::
     Nel caso mio, viene eseguito tutti giorni alle 13:40
 
 
-Instalazione
-============
+Installazione
+=============
 
 Copiare file bash_generate_bck_app.sh ::
 
