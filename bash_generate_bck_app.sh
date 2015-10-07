@@ -5,10 +5,11 @@
 # Version : 1.0.1
 
 # Last modified: 31/01/2015 
-#                03/08/2015 - Controllo della grandeza del File log,se supera 1MegaByte
+#                03/08/2015 - Controllo della grandeza del File log,se supera 
+#                             1 MegaByte (1048576)
 #		              Automaticamente sara rinominato il file log a
 #			      >> "[FILE LOG].YYYYMMGG_HHmm"
-#                07/10/2015 - FOLDERS=(Path absoluti per tutte le cartelle) 
+#                07/10/2015 - FOLDERS=(Path absoluti per tutte le cartelle aggiunte) 
 #
 # Creazione dei file Tar.gz per la creazioni dei Backup de tutte 
 # l'applicazioni Web al interno della variabile FOLDERS=("APP1" "APP2" .. "APPN")
@@ -27,15 +28,15 @@ logger(){
 #### BEGIN CONFIGURATION ####
 
 #----------------------------------------------------
-# ROOT        : Directory del File System per i salvataggio
-#               di tutti file creati.
-# FOLDERS     : Array con tutte progetti("cartelle")
-#               al interno del ROOT per la creazioni
-#               dei files tar.gz
-# PATH_BACKUP : Path dove saranno scritti tutti files
-#               generati dal comando tar.gz
+# ROOT        : Cartella del File System per i salvataggio
+#               di tutti file *.tar.gz.
+# FOLDERS     : Array con tutte le cartelle da fare 
+#               il Backup.
+#               FOLDERS=("APP1" "APP2" .. "APPN")
+# PATH_BACKUP : Path dove saranno salvati tutti files
+#               Generati dal comando tar.gz
 #
-#  Sample Struttura Cartelle
+#  Esempio Struttura Cartelle
 #
 # ROOT ├── data
 #  │   ├── source_20150929_1200.tar.gz
@@ -50,14 +51,14 @@ ROOT="/home/sarellano/Repository/backup/"
 FOLDERS=("/home/sarellano/Progetti/Almaviva/FE-CCA/CCA-FE/cca-webapp/source" "/home/sarellano/Progetti/Almaviva/Shell/VerifyValidator")
 PATH_BACKUP="${ROOT}/data/"
 PATH_LOG="${ROOT}/log/"
-LOG_FILE=${PATH_LOG}"log_backup_apps.log"
+LOG_FILE=${PATH_LOG}"bash_generate_bck_app.sh.log"
 
 #### END CONFIGURATION ####
 
 #-----------------------------------------------------
 # La creazioni dei file tar.gz saranno creati con 
 # il formato :
-#              "PATH_BACKUP/NAME_APP_YYYYMMGG_HHmm.tar.gz"
+#             "PATH_BACKUP/NAME_APP_YYYYMMGG_HHmm.tar.gz"
 # 
 #-----------------------------------------------------
 
@@ -71,7 +72,7 @@ if [ ! -d "${PATH_BACKUP}" ]; then
         	logger "ERROR" "Creazione della cartella ${PATH_BACKUP}"
         	exit 1
 	fi
-	chmod 750 backup_webapp	
+	chmod 750 ${PATH_BACKUP}	
 fi
 
 if [ ! -d "${PATH_LOG}" ]; then
@@ -80,7 +81,7 @@ if [ ! -d "${PATH_LOG}" ]; then
                 logger "ERROR" "Creazione della cartella ${PATH_LOG}"
                 exit 2
         fi
-        chmod 750 backup_webapp
+        chmod 750 ${PATH_LOG}
 fi
 
 logger "INFO" "Numero di progetti per creare Backup : ${#FOLDERS[*]}"
