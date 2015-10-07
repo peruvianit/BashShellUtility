@@ -1,6 +1,8 @@
 # Author : Sergio Arellano Diaz
 # Version : 1.0
-BashShellUtility
-================
+BashBackupApplication
+============================================
 
-BashShell Linux Utility
+Simplice gestione dei Backup per il filesystem
+
+ 
