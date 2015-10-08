@@ -15,6 +15,11 @@
 # l'applicazioni Web al interno della variabile FOLDERS=("APP1" "APP2" .. "APPN")
 #==========================================================================================
 
+#### DEBUGGIN ####
+set -e
+
+#----------------------------------------------------
+
 logger(){
 	if [ -f ${LOGFILE} ]; then
                 SIZE_FILE=$( stat -c %s ${LOG_FILE})
@@ -26,6 +31,10 @@ logger(){
 	
 	echo ${CURRENT_TIMESTAMP} [$1] $2 >> ${LOG_FILE} 
 }
+
+#### RETURN VALUES/EXIT STATUS CODES
+readonly E_CREATE_FOLDER=201
+readonly E_E_CREATE_FILE_TAR=202
 
 #### BEGIN CONFIGURATION ####
 
@@ -72,7 +81,7 @@ if [ ! -d "${PATH_BACKUP}" ]; then
 	mkdir ${PATH_BACKUP}
 	if [ $? -ne 0 ]; then
         	logger "ERROR" "Creazione della cartella ${PATH_BACKUP}"
-        	exit 1
+        	exit $E_CREATE_FOLDER
 	fi
 	chmod 750 ${PATH_BACKUP}	
 fi
@@ -81,7 +90,7 @@ if [ ! -d "${PATH_LOG}" ]; then
         mkdir ${PATH_LOG}
         if [ $? -ne 0 ]; then
                 logger "ERROR" "Creazione della cartella ${PATH_LOG}"
-                exit 2
+                exit $E_CREATE_FOLDER
         fi
         chmod 750 ${PATH_LOG}
 fi
@@ -101,7 +110,7 @@ do
 		tar cvzf ${NAME_FILE_TAR} ${APP} 
 		if [ $? -ne 0 ]; then
                 	logger "ERROR" "Creazione del file ${NAME_FILE_TAR}"
-                	exit 3
+                	exit $E_CREATE_FILE_TAR
         	fi		
 		logger "DEBUG" "Scrittura file tar.gz : ${NAME_FILE_TAR}"
 	else
