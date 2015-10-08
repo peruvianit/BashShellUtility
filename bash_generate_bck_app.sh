@@ -19,7 +19,7 @@ logger(){
 	if [ -f ${LOGFILE} ]; then
                 SIZE_FILE=$( stat -c %s ${LOG_FILE})
                 if [ ${SIZE_FILE} -gt 1048576 ]; then
-                        mv ${LOG_FILE} "${LOG_FILE}.`date +%d%m%Y_%H:%M`"
+                        mv ${LOG_FILE} "${LOG_FILE}.`date +%d%m%Y_%H%M`"
                 fi
         fi
 	CURRENT_TIMESTAMP=`date "+%d/%m/%Y %H:%M:%S"`
