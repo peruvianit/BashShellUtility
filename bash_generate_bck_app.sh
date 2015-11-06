@@ -49,7 +49,8 @@ readonly E_E_CREATE_FILE_TAR=202
 #
 #  Esempio Struttura Cartelle
 #
-# ROOT ├── data
+# ROOT 
+#  │── data
 #  │   ├── source_20150929_1200.tar.gz
 #  │   ├── source_20150930_1740.tar.gz
 #  │   ├── source_20151002_1340.tar.gz
@@ -63,6 +64,7 @@ FOLDERS=("/home/sarellano/Progetti/Almaviva/FE-CCA/CCA-FE/cca-webapp/source" "/h
 PATH_BACKUP="${ROOT}/data/"
 PATH_LOG="${ROOT}/log/"
 LOG_FILE=${PATH_LOG}"bash_generate_bck_app.sh.log"
+MAX_DAY_HISTORY=30
 
 #### END CONFIGURATION ####
 
@@ -117,6 +119,8 @@ do
 		logger "ERROR" "La cartella non esiste per effettuare il backup : ${APP}"
     	fi
 done
+
+find ${PATH_BACKUP} -type f -ctime +${MAX_DAY_HISTORY} -regextype posix-extended -regex '.*/[a-zA-Z]+_[0-9]{8}_[0-9]{4}+[.]tar[.]gz$' -exec rm -r -f {} \;
 
 exit 0 #--> Uscito con successo.
 # --> END SCRIPT SHELL
